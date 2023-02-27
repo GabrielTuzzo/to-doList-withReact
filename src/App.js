@@ -7,7 +7,7 @@ function App() {
     <>
     <TodoList todos = {todos} />
     <input type="name"/>
-    <button>Add</button>
+    <button style = { {color: 'green'} }>Add</button>
     <button>Clear Completed Tasks</button>
     <div>0 left To do</div>
     </>
