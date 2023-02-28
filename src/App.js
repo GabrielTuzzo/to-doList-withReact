@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, createElement } from 'react'
 import TodoList from './TodoList'
 
+
 function App() {
-  const [todos, seTodos] = useState([{ id:1, name: 'Todo 1', complete: 'false' }]) 
+  const [todos, seTodos] = useState([]) 
+  const todoNameRef = useRef()
+  
+  function addTodo (e) {
+    const name = todoNameRef.current.value
+
+    if (name === '') return
+    console.log(name)
+    todoNameRef.current.value = ''
+
+  }  
+  
   return (
     <>
     <TodoList todos = {todos} />
-    <input type="name"/>
-    <button style = { {color: 'green'} }>Add</button>
+    <input  ref={todoNameRef} type="text"/>
+    <button style = { {color: 'green'} } onClick={addTodo}>Add</button>
     <button>Clear Completed Tasks</button>
     <div>0 left To do</div>
     </>
