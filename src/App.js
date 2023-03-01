@@ -1,16 +1,33 @@
-import React, { useState, useRef, createElement } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import TodoList from './TodoList'
+
+const localStorage_key = 'todoApp.todos'
 
 
 function App() {
-  const [todos, seTodos] = useState([]) 
+  const [todos, setTodos] = useState([]) 
   const todoNameRef = useRef()
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem(localStorage_key))
+    if(storedTodos) setTodos( prevTodos => [...prevTodos, ...storedTodos] )
+  }, [])
+  
+  useEffect(() => {
+    localStorage.setItem(localStorage_key, JSON.stringify(todos))
+  }, [todos])
   
   function addTodo (e) {
     const name = todoNameRef.current.value
 
     if (name === '') return
-    console.log(name)
+    setTodos(prevTodos => {
+      return [...prevTodos, {
+        id: crypto.randomUUID(),
+        name: name,
+        complete: false
+      }]
+    })
     todoNameRef.current.value = ''
 
   }  
