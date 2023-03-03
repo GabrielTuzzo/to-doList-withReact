@@ -45,7 +45,7 @@ function App() {
   }
 
   function clearAllTodos() {
-    const newTodos = todos.filter(todo => todo.complete)
+    const newTodos = todos.filter(todo => todo.complete && !todo.complete)
     setTodos(newTodos)
   }
   
