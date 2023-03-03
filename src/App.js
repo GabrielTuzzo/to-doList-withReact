@@ -43,6 +43,11 @@ function App() {
     const newTodos = todos.filter(todo => !todo.complete)
     setTodos(newTodos)
   }
+
+  function clearAllTodos() {
+    const newTodos = todos.filter(todo => todo.complete)
+    setTodos(newTodos)
+  }
   
   return (
     <>
@@ -50,6 +55,7 @@ function App() {
     <input  ref={todoNameRef} type="text"/>
     <button style = { {color: 'green'} } onClick={addTodo}>Add</button>
     <button onClick={clearTodos}>Clear Completed Tasks</button>
+    <button onClick={clearAllTodos}>Clear All Tasks</button>
     <div>{todos.filter(todo => !todo.complete).length}left To do</div>
     </>
   )
